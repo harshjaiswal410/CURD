@@ -1,0 +1,83 @@
+﻿@model CrudOperation.Models.EmployeeDetailsModel
+<html>
+<head>
+    <title>registration form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        .container1 {
+            border-radius: 10px;
+            background-color: black;
+        }
+
+        .main {
+            display: flex;
+        }
+
+        .Heading {
+            margin-top:10px;
+            color: white;
+        }
+
+        h2 {
+            font-size: 30px;
+            text-shadow: 2px 2px 25px orange;
+        }
+
+        input, #Feedback {
+            width: 90%;
+            outline: none;
+            border-color: orange;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            padding: 7px 0;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #fffdfd;
+            background: transparent;
+        }
+
+        .SubmitBtn {
+            width: 40%;
+            height: 38px;
+            background-color: black;
+            color: orange;
+            font-weight: bold;
+            border-radius: 30px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 18px
+        }
+    </style>
+</head>
+    <body>
+        <div class="main">
+            <div class="col-md-4 container1">
+                @using (Html.BeginForm("PutDetails", "Company"))
+                {
+                    <h2 class="Heading">Registration Form</h2>
+                    <div>
+                        @Html.TextBoxFor(FirstName => FirstName.EmpFirstName, new { @placeholder = "Enter first name" })<br />
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(LastName => LastName.EmpLastName, new { @placeholder = "Enter last name" })<br />
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(Email => Email.Email, new { @placeholder = "Enter email" })<br />
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(Mobile => Mobile.MobileNo, new { @placeholder = "Enter Mobile nunmber" })<br />
+                    </div>
+                    <div>
+                        @Html.TextAreaFor(Feedback => Feedback.Feedback, new { @placeholder = "Enter Feedback Maximum 200 characters" })<br />
+                    </div>
+                    <div>
+                        <input class="SubmitBtn" type="submit" value="Register">
+                    </div>
+                }
+            </div>
+     </div>
+
+    </body>
+</html>

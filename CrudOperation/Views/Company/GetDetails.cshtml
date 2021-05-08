@@ -1,0 +1,152 @@
+﻿@model CrudOperation.Models.GetDetailsModel
+<html>
+<head>
+    <title>Employee Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .main {
+            background-color:grey;
+            width:100%;
+            position:absolute;
+            display: flex;
+        }
+        .container1 {
+            position: relative;
+            top: 20px;
+            left: 1%;
+            height: 30%;
+            border-radius: 10px;
+            background-color: black;
+        }
+        .container2{
+            position:relative;
+            top:20px;
+            left:2%;
+        }
+        .Heading {
+            margin-top: 10px;
+            color: white;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-left: 15px;
+            text-shadow: 2px 2px 25px orange;
+        }
+
+        input, #Feedback {
+            width: 90%;
+            outline: none;
+            border-color: orange;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            padding: 7px 0;
+            margin-top: 10px;
+            margin-left: 15px;
+            font-size: 16px;
+            color: #fffdfd;
+            background: transparent;
+        }
+
+        .SubmitBtn {
+            width: 40%;
+            height: 38px;
+            background-color: black;
+            color: orange;
+            font-weight: bold;
+            border-radius: 30px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 18px
+        }
+        th{
+            margin:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="col-md-4 container1">
+            @using (Html.BeginForm("PutDetails", "Company"))
+            {
+                <h2 class="Heading">Registration Form</h2>
+                <div>
+                    @Html.TextBoxFor(FirstName => FirstName.EmpFirstName, new { @placeholder = "Enter first name" })<br />
+                </div>
+                <div>
+                    @Html.TextBoxFor(LastName => LastName.EmpLastName, new { @placeholder = "Enter last name" })<br />
+                </div>
+                <div>
+                    @Html.TextBoxFor(Email => Email.Email, new { @placeholder = "Enter email" })<br />
+                </div>
+                <div>
+                    @Html.TextBoxFor(Mobile => Mobile.MobileNo, new { @placeholder = "Enter Mobile number" })<br />
+                </div>
+                <div>
+                    @Html.TextAreaFor(Feedback => Feedback.Feedback, new { @placeholder = "Enter Feedback Maximum 200 characters" })<br />
+                </div>
+                <div>
+                    <input class="SubmitBtn" type="submit" value="Register">
+                </div>
+            }
+        </div>
+        <div class="container2" >
+            <table class="table-dark">
+                <tr>
+                    <th>UerId</th>
+                    <th>UserFName</th>
+                    <th>UserLName</th>
+                    <th>Email</th>
+                    <th>Mobile No.</th>
+                    <th>Feedback</th>
+                    <th>Action</th>
+
+                </tr>
+                @foreach (var item in @Model.EmpList)
+                {
+                    <tr class="info">
+                        <td>@Html.DisplayFor(modelitem => item.EmpID) </td>
+                        <td>@Html.DisplayFor(modelitem => item.EmpFirstName)</td>
+                        <td>@Html.DisplayFor(modelitem => item.EmpLastName)</td>
+                        <td>@Html.DisplayFor(modelitem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelitem => item.MobileNo)</td>
+                        <td>@Html.DisplayFor(modelitem => item.Feedback)</td>
+                        <td>
+                            <button class="btn">
+                                @Html.ActionLink("Edit", "EditEmployee/" + item.EmpID, "Company")
+                            </button>
+                            <button class="btn">
+                                @Html.ActionLink("DELETE", "DeleteEmployee/" + item.EmpID, "Company")
+                            </button>company/DeleteEmployee/16
+                        </td>
+                    </tr>
+                }
+            </table>
+            @*<div class="col-md-4 container1" id="Update">
+                @using (Html.BeginForm("EditEmployee", "Company"))
+                {
+                    <h2 class="Heading">Edit employee Details</h2>
+                    <div>
+                        @Html.TextBoxFor(Email => Email.Email, new { @placeholder = "Enter email" })<br />
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(Mobile => Mobile.MobileNo, new { @placeholder = "Enter Mobile nunmber" })<br />
+                    </div>
+                    <div>
+                        @Html.TextAreaFor(Feedback => Feedback.Feedback, new { @placeholder = "Enter Feedback Maximum 200 characters" })<br />
+                    </div>
+                    <div>
+                        <input class="SubmitBtn" type="submit" value="Register">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>  
+    <script>
+        function UpdateData() {
+            document.getElementById("Update").style.display = "block";
+        }
+    </script>*@
+</body>
+</html>
